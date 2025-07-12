@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful - Learning World Summer Skills Packages</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f7f4;
+            color: #3d3d3d;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+        
+        .btn-primary {
+            background-color: #6d5aa2;
+            color: #ffffff;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary:hover {
+            background-color: #4a3a6a;
+        }
+        
+        .btn-secondary {
+            background-color: #e0e0e0;
+            color: #4a3a6a;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #d0d0d0;
+        }
+        
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background-color: #d4edda;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+        }
+        
+        .success-icon svg {
+            width: 40px;
+            height: 40px;
+            color: #155724;
+        }
+        
+        .enrollment-card {
+            background-color: #ffffff;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #6d5aa2;
+        }
+        
+        .info-box {
+            background-color: #f1edea;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .next-steps {
+            background-color: #e8f4fd;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+    <!-- Header -->
+    <header class="bg-[#f1edea] py-6 border-b border-gray-200">
+        <div class="container">
+            <div class="text-center">
+                <h1 class="text-3xl font-bold text-[#4a3a6a]">Payment Successful!</h1>
+                <p class="text-gray-600 mt-2">Learning World Summer Skills Packages</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="py-12">
+        <div class="container">
+            <!-- Success Icon and Message -->
+            <div class="text-center mb-8">
+                <div class="success-icon">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Thank You for Your Enrollment!</h2>
+                <p class="text-lg text-gray-600 mb-6">
+                    Your payment has been processed successfully. We're excited to have your child(ren) join our summer skills program!
+                </p>
+            </div>
+
+            <!-- Enrollment Summary -->
+            <div class="bg-white p-8 rounded-lg shadow-md mb-8">
+                <h3 class="text-xl font-bold text-gray-800 mb-6">Enrollment Summary</h3>
+                <div id="enrollment-summary">
+                    <!-- Enrollment details will be populated here -->
+                </div>
+                <div class="border-t pt-4 mt-6">
+                    <div class="flex justify-between items-center text-lg font-semibold">
+                        <span>Total Paid:</span>
+                        <span class="text-[#4a3a6a]">₦<span id="total-amount">0</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Important Information -->
+            <div class="info-box">
+                <h3 class="font-semibold text-[#4a3a6a] mb-3">Important Information</h3>
+                <ul class="text-gray-700 space-y-2">
+                    <li>• <strong>Confirmation Email:</strong> You will receive a detailed confirmation email within the next 24 hours</li>
+                    <li>• <strong>Welcome Package:</strong> Course materials and login credentials will be sent 1 week before classes begin</li>
+                    <li>• <strong>Class Schedule:</strong> Classes run from August 4 - August 31, 2025</li>
+                    <li>• <strong>Technical Support:</strong> Our team is available to help with any technical issues</li>
+                    <li>• <strong>Refund Policy:</strong> Full refunds available within 7 days of enrollment</li>
+                </ul>
+            </div>
+
+            <!-- Next Steps -->
+            <div class="next-steps">
+                <h3 class="font-semibold text-blue-800 mb-3">What Happens Next?</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="text-center">
+                        <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2">
+                            <span class="text-blue-600 font-bold">1</span>
+                        </div>
+                        <h4 class="font-semibold text-sm">Confirmation Email</h4>
+                        <p class="text-xs text-gray-600">Receive detailed enrollment confirmation within 24 hours</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2">
+                            <span class="text-blue-600 font-bold">2</span>
+                        </div>
+                        <h4 class="font-semibold text-sm">Welcome Package</h4>
+                        <p class="text-xs text-gray-600">Get course materials and login details 1 week before classes</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2">
+                            <span class="text-blue-600 font-bold">3</span>
+                        </div>
+                        <h4 class="font-semibold text-sm">Classes Begin</h4>
+                        <p class="text-xs text-gray-600">Start your learning journey on August 4, 2025</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <h3 class="font-semibold text-[#4a3a6a] mb-4">Need Help?</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold text-gray-800 mb-2">Contact Information</h4>
+                        <p class="text-gray-600 text-sm">Email: learningworldng@gmail.com</p>
+                        <p class="text-gray-600 text-sm">Phone: +234 XXX XXX XXXX</p>
+                        <p class="text-gray-600 text-sm">Hours: Monday - Friday, 9:00 AM - 6:00 PM</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-800 mb-2">Support Resources</h4>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• <a href="#" class="text-[#6d5aa2] underline">FAQ</a></li>
+                            <li>• <a href="#" class="text-[#6d5aa2] underline">Technical Requirements</a></li>
+                            <li>• <a href="#" class="text-[#6d5aa2] underline">Parent Guide</a></li>
+                            <li>• <a href="#" class="text-[#6d5aa2] underline">Student Handbook</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="text-center space-y-4">
+                <a href="summer-landing.html" class="btn-primary">
+                    Return to Homepage
+                </a>
+                <br>
+                <a href="#" class="btn-secondary">
+                    Download Receipt
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#f1edea] py-8 text-center text-gray-600 text-sm mt-12">
+        <div class="container">
+            <p>&copy; 2025 Learning World. All rights reserved.</p>
+            <p class="mt-2">Contact: learningworldng@gmail.com</p>
+        </div>
+    </footer>
+
+    <script>
+        // Load enrollment data from localStorage (if available)
+        document.addEventListener('DOMContentLoaded', function() {
+            loadEnrollmentData();
+        });
+
+        function loadEnrollmentData() {
+            const storedData = localStorage.getItem('currentEnrollment');
+            if (storedData) {
+                try {
+                    const enrollmentData = JSON.parse(storedData);
+                    displayEnrollmentSummary(enrollmentData);
+                    calculateTotal(enrollmentData);
+                } catch (error) {
+                    console.error('Error loading enrollment data:', error);
+                }
+            } else {
+                // If no data in localStorage, show a generic message
+                document.getElementById('enrollment-summary').innerHTML = `
+                    <p class="text-gray-600 text-center">Enrollment details will be sent to your email.</p>
+                `;
+                document.getElementById('total-amount').textContent = '0';
+            }
+        }
+
+        function displayEnrollmentSummary(enrollmentData) {
+            const summaryContainer = document.getElementById('enrollment-summary');
+            summaryContainer.innerHTML = '';
+
+            enrollmentData.forEach((item, index) => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'enrollment-card';
+                itemElement.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-gray-800">${item.childName}</h4>
+                            <p class="text-gray-600 text-sm">${item.packageName}</p>
+                            <p class="text-gray-500 text-xs">${item.schedule}</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="font-semibold text-[#4a3a6a]">₦${item.price.toLocaleString()}</span>
+                        </div>
+                    </div>
+                `;
+                summaryContainer.appendChild(itemElement);
+            });
+        }
+
+        function calculateTotal(enrollmentData) {
+            const totalAmount = enrollmentData.reduce((sum, item) => sum + item.price, 0);
+            document.getElementById('total-amount').textContent = totalAmount.toLocaleString();
+        }
+
+        // Clear enrollment data from localStorage after successful payment
+        // This ensures the data is cleared when the success page loads
+        localStorage.removeItem('currentEnrollment');
+    </script>
+</body>
+
+</html>

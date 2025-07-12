@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - Learning World Summer Skills Packages</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f7f4;
+            color: #3d3d3d;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+        
+        .btn-primary {
+            background-color: #6d5aa2;
+            color: #ffffff;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #4a3a6a;
+        }
+        
+        .btn-secondary {
+            background-color: #e0e0e0;
+            color: #4a3a6a;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #d0d0d0;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: #4a3a6a;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #6d5aa2;
+        }
+        
+        .enrollment-item {
+            background-color: #ffffff;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+            border-left: 4px solid #6d5aa2;
+        }
+        
+        .loading {
+            display: none;
+        }
+        
+        .loading.show {
+            display: block;
+        }
+        
+        .success-message {
+            display: none;
+            background-color: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .error-message {
+            display: none;
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+    <!-- Header -->
+    <header class="bg-[#f1edea] py-6 border-b border-gray-200">
+        <div class="container">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <a href="summer-landing.html" class="text-[#4a3a6a] font-bold text-xl">
+                        ← Back to Enrollment
+                    </a>
+                </div>
+                <div class="text-center">
+                    <h1 class="text-2xl font-bold text-[#4a3a6a]">Payment</h1>
+                    <p class="text-gray-600">Learning World Summer Skills Packages</p>
+                </div>
+                <div class="w-24"></div>
+                <!-- Spacer for centering -->
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="py-8">
+        <div class="container">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Payment Form -->
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Payment Information</h2>
+
+                    <!-- Success/Error Messages -->
+                    <div id="success-message" class="success-message">
+                        <strong>Payment Successful!</strong> You will receive a confirmation email shortly.
+                    </div>
+                    <div id="error-message" class="error-message">
+                        <strong>Payment Failed!</strong> Please try again or contact support.
+                    </div>
+
+                    <form id="payment-form">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="form-group">
+                                <label for="firstName" class="form-label">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName" class="form-label">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" class="form-input" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address *</label>
+                            <input type="email" id="email" name="email" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone" class="form-label">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address" class="form-label">Address *</label>
+                            <textarea id="address" name="address" rows="3" class="form-input" required></textarea>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="form-group">
+                                <label for="city" class="form-label">City *</label>
+                                <input type="text" id="city" name="city" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="state" class="form-label">State *</label>
+                                <input type="text" id="state" name="state" class="form-input" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="emergencyContact" class="form-label">Emergency Contact (Name & Phone)</label>
+                            <input type="text" id="emergencyContact" name="emergencyContact" class="form-input" placeholder="e.g., John Doe - 08012345678">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Payment Method *</label>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="radio" name="paymentMethod" value="card" class="mr-2" checked>
+                                    <span>Credit/Debit Card</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="paymentMethod" value="bank" class="mr-2">
+                                    <span>Bank Transfer</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="radio" name="paymentMethod" value="ussd" class="mr-2">
+                                    <span>USSD</span>
+                                </label>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="newsletter" name="newsletter" class="mr-2">
+                                <span class="text-sm">Subscribe to our newsletter for updates and special offers</span>
+                            </label>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row gap-4 mt-8">
+                            <button type="submit" id="pay-button" class="btn-primary flex-1 text-lg">
+                                Pay ₦<span id="total-amount">0</span>
+                            </button>
+                            <button type="button" onclick="window.location.href='summer-landing.html'" class="btn-secondary">
+                                Cancel
+                            </button>
+                        </div>
+
+                        <div id="loading" class="loading text-center mt-4">
+                            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[#6d5aa2]"></div>
+                            <p class="mt-2 text-gray-600">Processing payment...</p>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Order Summary</h2>
+
+                    <div id="enrollment-summary" class="space-y-4 mb-6">
+                        <!-- Enrollment items will be populated here -->
+                    </div>
+
+                    <div class="border-t pt-4">
+                        <div class="flex justify-between items-center text-lg font-semibold">
+                            <span>Total Amount:</span>
+                            <span class="text-[#4a3a6a]">₦<span id="summary-total">0</span></span>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 p-4 bg-[#f1edea] rounded-lg">
+                        <h3 class="font-semibold text-[#4a3a6a] mb-2">What's Included:</h3>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>• Complete course materials and resources</li>
+                            <li>• Live interactive sessions with expert instructors</li>
+                            <li>• Certificate of completion</li>
+                            <li>• Access to course recordings for review</li>
+                            <li>• Parent progress reports</li>
+                            <li>• Technical support throughout the program</li>
+                        </ul>
+                    </div>
+
+                    <div class="mt-6 p-4 bg-blue-50 rounded-lg">
+                        <h3 class="font-semibold text-blue-800 mb-2">Important Information:</h3>
+                        <ul class="text-sm text-blue-700 space-y-1">
+                            <li>• Classes run from August 4 - August 31, 2025</li>
+                            <li>• All sessions are conducted online</li>
+                            <li>• Schedule conflicts are automatically prevented</li>
+                            <li>• Refunds available within 7 days of enrollment</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#f1edea] py-8 text-center text-gray-600 text-sm mt-12">
+        <div class="container">
+            <p>&copy; 2025 Learning World. All rights reserved.</p>
+            <p class="mt-2">Contact: learningworldng@gmail.com</p>
+            <p class="mt-1">Secure payments powered by Paystack</p>
+        </div>
+    </footer>
+
+    <script>
+        let enrollmentData = [];
+        let totalAmount = 0;
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            loadEnrollmentData();
+            setupPaymentForm();
+        });
+
+        function loadEnrollmentData() {
+            const storedData = localStorage.getItem('currentEnrollment');
+            if (!storedData) {
+                showError('No enrollment data found. Please return to the enrollment page.');
+                return;
+            }
+
+            try {
+                enrollmentData = JSON.parse(storedData);
+                if (enrollmentData.length === 0) {
+                    showError('No packages selected. Please return to the enrollment page.');
+                    return;
+                }
+
+                displayEnrollmentSummary();
+                calculateTotal();
+            } catch (error) {
+                showError('Error loading enrollment data. Please return to the enrollment page.');
+            }
+        }
+
+        function displayEnrollmentSummary() {
+            const summaryContainer = document.getElementById('enrollment-summary');
+            summaryContainer.innerHTML = '';
+
+            enrollmentData.forEach((item, index) => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'enrollment-item';
+                itemElement.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-gray-800">${item.childName}</h4>
+                            <p class="text-gray-600 text-sm">${item.packageName}</p>
+                            <p class="text-gray-500 text-xs">${item.schedule}</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="font-semibold text-[#4a3a6a]">₦${item.price.toLocaleString()}</span>
+                        </div>
+                    </div>
+                `;
+                summaryContainer.appendChild(itemElement);
+            });
+        }
+
+        function calculateTotal() {
+            totalAmount = enrollmentData.reduce((sum, item) => sum + item.price, 0);
+            document.getElementById('total-amount').textContent = totalAmount.toLocaleString();
+            document.getElementById('summary-total').textContent = totalAmount.toLocaleString();
+        }
+
+        function setupPaymentForm() {
+            const form = document.getElementById('payment-form');
+            const payButton = document.getElementById('pay-button');
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                if (!validateForm()) {
+                    return;
+                }
+
+                const formData = new FormData(form);
+                const paymentData = {
+                    amount: totalAmount * 100, // Convert to kobo for Paystack
+                    email: formData.get('email'),
+                    firstName: formData.get('firstName'),
+                    lastName: formData.get('lastName'),
+                    phone: formData.get('phone'),
+                    address: formData.get('address'),
+                    city: formData.get('city'),
+                    state: formData.get('state'),
+                    emergencyContact: formData.get('emergencyContact'),
+                    paymentMethod: formData.get('paymentMethod'),
+                    enrollmentData: enrollmentData,
+                    metadata: {
+                        custom_fields: [{
+                            display_name: "First Name",
+                            variable_name: "first_name",
+                            value: formData.get('firstName')
+                        }, {
+                            display_name: "Last Name",
+                            variable_name: "last_name",
+                            value: formData.get('lastName')
+                        }, {
+                            display_name: "Phone",
+                            variable_name: "phone",
+                            value: formData.get('phone')
+                        }, {
+                            display_name: "Address",
+                            variable_name: "address",
+                            value: formData.get('address')
+                        }, {
+                            display_name: "City",
+                            variable_name: "city",
+                            value: formData.get('city')
+                        }, {
+                            display_name: "State",
+                            variable_name: "state",
+                            value: formData.get('state')
+                        }, {
+                            display_name: "Emergency Contact",
+                            variable_name: "emergency_contact",
+                            value: formData.get('emergencyContact')
+                        }, {
+                            display_name: "Enrollment Count",
+                            variable_name: "enrollment_count",
+                            value: enrollmentData.length.toString()
+                        }]
+                    }
+                };
+
+                processPayment(paymentData);
+            });
+        }
+
+        function validateForm() {
+            const requiredFields = ['firstName', 'lastName', 'email', 'phone', 'address', 'city', 'state'];
+
+            for (let field of requiredFields) {
+                const element = document.getElementById(field);
+                if (!element.value.trim()) {
+                    showError(`Please fill in the ${field.replace(/([A-Z])/g, ' $1').toLowerCase()} field.`);
+                    element.focus();
+                    return false;
+                }
+            }
+
+
+
+            return true;
+        }
+
+        function processPayment(paymentData) {
+            showLoading(true);
+            hideMessages();
+
+            // Initialize Paystack
+            const handler = PaystackPop.setup({
+                key: 'pk_test_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', // Replace with your Paystack public key
+                email: paymentData.email,
+                amount: paymentData.amount,
+                currency: 'NGN',
+                ref: 'LW_' + Math.floor((Math.random() * 1000000000) + 1),
+                callback: function(response) {
+                    // Payment successful
+                    showLoading(false);
+                    showSuccess();
+
+                    // Clear cart data
+                    localStorage.removeItem('currentEnrollment');
+
+                    // Send confirmation email (you would implement this on your backend)
+                    sendConfirmationEmail(paymentData, response.reference);
+
+                    // Redirect to success page after 3 seconds
+                    setTimeout(() => {
+                        window.location.href = 'payment-success.html';
+                    }, 3000);
+                },
+                onClose: function() {
+                    // Payment cancelled
+                    showLoading(false);
+                    showError('Payment was cancelled. Please try again.');
+                }
+            });
+
+            handler.openIframe();
+        }
+
+        function sendConfirmationEmail(paymentData, reference) {
+            // This would typically be handled by your backend
+            // For now, we'll just log the data
+            console.log('Payment successful:', {
+                reference: reference,
+                paymentData: paymentData
+            });
+        }
+
+        function showLoading(show) {
+            const loading = document.getElementById('loading');
+            const payButton = document.getElementById('pay-button');
+
+            if (show) {
+                loading.classList.add('show');
+                payButton.disabled = true;
+            } else {
+                loading.classList.remove('show');
+                payButton.disabled = false;
+            }
+        }
+
+        function showSuccess() {
+            const successMessage = document.getElementById('success-message');
+            successMessage.style.display = 'block';
+        }
+
+        function showError(message) {
+            const errorMessage = document.getElementById('error-message');
+            errorMessage.innerHTML = `<strong>Error!</strong> ${message}`;
+            errorMessage.style.display = 'block';
+        }
+
+        function hideMessages() {
+            document.getElementById('success-message').style.display = 'none';
+            document.getElementById('error-message').style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>
