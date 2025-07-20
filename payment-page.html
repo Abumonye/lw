@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment - Learning World Summer Skills Packages</title>
+    <title>Payment - Learning World Holiday Skills Packages</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -125,7 +125,7 @@
                 </div>
                 <div class="text-center">
                     <h1 class="text-2xl font-bold text-[#4a3a6a]">Payment</h1>
-                    <p class="text-gray-600">Learning World Summer Skills Packages</p>
+                    <p class="text-gray-600">Learning World Holiday Skills Packages</p>
                 </div>
                 <div class="w-24"></div>
                 <!-- Spacer for centering -->
@@ -186,31 +186,6 @@
                                 <input type="text" id="state" name="state" class="form-input" required>
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <label for="emergencyContact" class="form-label">Emergency Contact (Name & Phone)</label>
-                            <input type="text" id="emergencyContact" name="emergencyContact" class="form-input" placeholder="e.g., John Doe - 08012345678">
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Payment Method *</label>
-                            <div class="space-y-2">
-                                <label class="flex items-center">
-                                    <input type="radio" name="paymentMethod" value="card" class="mr-2" checked>
-                                    <span>Credit/Debit Card</span>
-                                </label>
-                                <label class="flex items-center">
-                                    <input type="radio" name="paymentMethod" value="bank" class="mr-2">
-                                    <span>Bank Transfer</span>
-                                </label>
-                                <label class="flex items-center">
-                                    <input type="radio" name="paymentMethod" value="ussd" class="mr-2">
-                                    <span>USSD</span>
-                                </label>
-                            </div>
-                        </div>
-
-
 
                         <div class="form-group">
                             <label class="flex items-center">
@@ -366,8 +341,6 @@
                     address: formData.get('address'),
                     city: formData.get('city'),
                     state: formData.get('state'),
-                    emergencyContact: formData.get('emergencyContact'),
-                    paymentMethod: formData.get('paymentMethod'),
                     enrollmentData: enrollmentData,
                     metadata: {
                         custom_fields: [{
@@ -394,10 +367,6 @@
                             display_name: "State",
                             variable_name: "state",
                             value: formData.get('state')
-                        }, {
-                            display_name: "Emergency Contact",
-                            variable_name: "emergency_contact",
-                            value: formData.get('emergencyContact')
                         }, {
                             display_name: "Enrollment Count",
                             variable_name: "enrollment_count",
@@ -433,7 +402,7 @@
 
             // Initialize Paystack
             const handler = PaystackPop.setup({
-                key: 'pk_test_ecc222f2e8f917f3ab03046e7f799a7ed7dc9aac',
+                key: 'pk_live_da393943b34a3118807f24e1334c7deefd0acfbb',
                 email: paymentData.email,
                 amount: paymentData.amount,
                 currency: 'NGN',
