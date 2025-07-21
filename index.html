@@ -131,7 +131,7 @@
                         Explore Our Packages!
                     </a>
                     <p class="text-gray-600 mt-4 text-sm md:text-base">
-                        ₦40,000 per package.
+                        ₦50,000 for DigiSavvy & AI & Software Development, ₦25,000 for Discipleship Intensive, ₦40,000 for all other packages.
                     </p>
                     <div class="mt-6">
                         <h3 class="text-xl font-semibold text-gray-700 mb-2">Registration Ends In:</h3>
@@ -204,7 +204,16 @@
                     </div>
                     <div class="bg-[#f8f7f4] p-6 rounded-lg shadow-md package-card">
                         <h4 class="font-semibold text-xl text-gray-700 mb-2">DigiSavvy (Data Analytics & AI)</h4>
-                        <p class="text-gray-600 flex-grow">Focus: Data literacy, Excel, basic statistics, and using AI tools for learning, creativity, and productivity. Includes prompt engineering.</p>
+                        <p class="text-gray-600 flex-grow">The DigiSavvy Teens is introduction to Non-Code Tech tools. Master indemand tech skills without coding. Boost your productivity and stand out in school and future jobs. Beginner friendly tools and practical projects.<br><br>They'd
+                            be learning:
+                            <ul class='list-disc list-inside mt-2'>
+                                <li>Collaboration tools</li>
+                                <li>Design tools</li>
+                                <li>Google Workspace tools</li>
+                                <li>Productivity & Organisation tools</li>
+                                <li>Data & Automation tools</li>
+                            </ul>
+                        </p>
                         <button class="btn-primary mt-4 add-to-cart-btn" data-package="DigiSavvy (Data Analytics & AI)">Add to Cart</button>
                     </div>
                     <div class="bg-[#f8f7f4] p-6 rounded-lg shadow-md package-card">
@@ -364,7 +373,15 @@
     </footer>
 
     <script>
-        const PACKAGE_PRICE = 40000; // NGN
+        const PACKAGE_PRICES = {
+            "Story Builders & Creative Crafts": 40000,
+            "AI & Software Development (Kids)": 50000,
+            "Money Savvy Kids": 40000,
+            "Creative Writing & Storytelling": 40000,
+            "DigiSavvy (Data Analytics & AI)": 50000,
+            "Global Languages & Cultural Intelligence": 40000,
+            "Discipleship Intensive (16 years and above)": 25000
+        };
         let cart = []; // Stores { childName, packageName, price, schedule }
 
         const packageData = {
@@ -400,7 +417,7 @@
             },
             "DigiSavvy (Data Analytics & AI)": {
                 ageGroup: "13-19",
-                focus: "Data literacy, AI tools, problem-solving, digital creativity.",
+                focus: "Introduction to Non-Code Tech tools. Master indemand tech skills without coding. Boost productivity and stand out in school and future jobs. Collaboration, design, Google Workspace, productivity, organisation, data & automation tools.",
                 schedule: "Tue, Thu: 11:00 AM - 12:30 PM",
                 timeSlot: "11:00 AM - 12:30 PM",
                 days: ["Tue", "Thu"]
@@ -540,7 +557,7 @@
                     cart.push({
                         childName: childName,
                         packageName: packageName,
-                        price: PACKAGE_PRICE,
+                        price: PACKAGE_PRICES[packageName],
                         schedule: packageInfo.schedule,
                         timeSlot: packageInfo.timeSlot,
                         days: packageInfo.days
