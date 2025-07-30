@@ -479,6 +479,10 @@
         }
 
         function saveEnrollmentToDatabase(paymentData, paymentReference) {
+            console.log('Starting to save enrollment data...');
+            console.log('Payment Data:', paymentData);
+            console.log('Payment Reference:', paymentReference);
+
             // Prepare data for Google Sheets
             const enrollmentDataForSheets = {
                 childInfo: {
@@ -503,6 +507,8 @@
                 }
             };
 
+            console.log('Data being sent to Google Sheets:', enrollmentDataForSheets);
+
             // Send to Google Apps Script
             fetch('https://script.google.com/macros/s/AKfycbwhgva2JqjpLLA99MDqYGi07GUHCbuIWzXrQLMj1BZCb_wVtjNTGe7GvxQeCVRS7fxu/exec', {
                     method: 'POST',
@@ -511,17 +517,21 @@
                     },
                     body: JSON.stringify(enrollmentDataForSheets)
                 })
-                .then(response => response.json())
+                .then(response => {
+                    console.log('Response received from Google Apps Script:', response);
+                    return response.json();
+                })
                 .then(data => {
                     console.log('Enrollment saved to Google Sheets:', data);
                     if (data.success) {
-                        console.log('Data successfully saved to Google Sheets');
+                        console.log('✅ Data successfully saved to Google Sheets');
                     } else {
-                        console.error('Error saving to Google Sheets:', data.error);
+                        console.error('❌ Error saving to Google Sheets:', data.error);
                     }
                 })
                 .catch(error => {
-                    console.error('Error sending data to Google Sheets:', error);
+                    console.error('❌ Error sending data to Google Sheets:', error);
+                    console.error('Error details:', error.message);
                     // Still show success to user, but log the error
                 });
         }
