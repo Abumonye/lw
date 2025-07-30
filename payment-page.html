@@ -230,6 +230,9 @@
                             <button type="button" onclick="window.location.href='summer-landing.html'" class="btn-secondary">
                                 Cancel
                             </button>
+                            <button type="button" onclick="testGoogleSheetsIntegration()" class="btn-secondary" style="background-color: #ff6b6b; color: white;">
+                                Test Google Sheets (No Payment)
+                            </button>
                         </div>
 
                         <div id="loading" class="loading text-center mt-4">
@@ -450,6 +453,8 @@
                 currency: 'NGN',
                 ref: 'LW_' + Math.floor((Math.random() * 1000000000) + 1),
                 callback: function(response) {
+                    console.log('🎉 Payment successful!');
+                    console.log('Payment response:', response);
                     // Payment successful
                     showLoading(false);
                     showSuccess();
@@ -469,6 +474,7 @@
                     }, 3000);
                 },
                 onClose: function() {
+                    console.log('❌ Payment was cancelled by user');
                     // Payment cancelled
                     showLoading(false);
                     showError('Payment was cancelled. Please try again.');
@@ -572,6 +578,32 @@
         function hideMessages() {
             document.getElementById('success-message').style.display = 'none';
             document.getElementById('error-message').style.display = 'none';
+        }
+
+        function testGoogleSheetsIntegration() {
+            console.log('🧪 Testing Google Sheets integration...');
+
+            // Simulate payment data
+            const testPaymentData = {
+                childName: 'Test Child',
+                childAge: '12',
+                childGender: 'Male',
+                location: 'Lagos',
+                parentName: 'Test Parent',
+                email: 'test@example.com',
+                phone: '08012345678',
+                address: 'Test Address',
+                city: 'Lagos',
+                state: 'Lagos',
+                amount: 5000000 // 50,000 in kobo
+            };
+
+            const testReference = 'TEST_REF_' + Math.floor(Math.random() * 1000000);
+
+            console.log('🧪 Calling saveEnrollmentToDatabase with test data...');
+            saveEnrollmentToDatabase(testPaymentData, testReference);
+
+            alert('Test completed! Check console for results.');
         }
     </script>
 </body>
