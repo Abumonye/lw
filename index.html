@@ -9,18 +9,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Warm Neutrals with Brand Accent -->
-    <!-- Application Structure Plan: A single-page, vertically scrolling landing page. The structure is designed for immediate clarity, presenting key information at a glance. It features a prominent hero section, distinct sections for children's and teenagers' packages, a clear class schedule to prevent overlaps, a dynamic "Add to Cart" feature for multiple children and courses, and integrated market research insights. This flow prioritizes user understanding, flexible enrollment, and transparent information. -->
-    <!-- Visualization & Content Choices:
-        - Report Info: Product Value Proposition (Summer Classes) -> Goal: Inform/Persuade -> Viz/Presentation: Hero section with compelling text and product image -> Interaction: Primary CTA button -> Justification: Immediate impact and clear value proposition.
-        - Report Info: Campaign Timeline -> Goal: Inform/Create Urgency -> Viz/Presentation: Countdown timer -> Interaction: Dynamic time update -> Justification: Encourages prompt action.
-        - Report Info: Specific Packages & Details -> Goal: Inform/Organize -> Viz/Presentation: Dedicated sections for Children (8-12) and Teenagers (13-19) with package cards -> Interaction: "Add to Cart" button for each package -> Justification: Clearly presents available options and initiates enrollment.
-        - Report Info: Class Schedule -> Goal: Inform/Prevent Overlap -> Viz/Presentation: Tabular schedule displaying non-overlapping time slots -> Interaction: N/A (informational) -> Justification: Essential for parents to plan enrollments without conflicts.
-        - Report Info: Market Research (Pricing) -> Goal: Inform/Validate Value -> Viz/Presentation: Dedicated section with bullet points -> Interaction: N/A -> Justification: Provides competitive context for pricing.
-        - Report Info: Enrollment Cart -> Goal: Facilitate Action/Manage Enrollment -> Viz/Presentation: Dynamic list of selected courses for multiple children, with total cost -> Interaction: Input for child's name, "Add to Cart" for each package, "Proceed to Payment" button -> Justification: Allows flexible multi-child, multi-course enrollment and transparent cost calculation.
-        - Report Info: Common Questions -> Goal: Inform/Address Objections -> Viz/Presentation: Accordion FAQ -> Interaction: Click to expand/collapse -> Justification: Organizes information efficiently and reduces friction to purchase.
-    -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -48,6 +36,44 @@
         
         .btn-primary:hover {
             background-color: #4a3a6a;
+        }
+        
+        .btn-secondary {
+            background-color: #e0e0e0;
+            color: #4a3a6a;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #d0d0d0;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: #4a3a6a;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #6d5aa2;
         }
         
         .faq-item {
@@ -78,24 +104,6 @@
             transform: rotate(180deg);
         }
         
-        .schedule-table th,
-        .schedule-table td {
-            padding: 0.75rem;
-            border: 1px solid #e0e0e0;
-            text-align: center;
-            vertical-align: top;
-        }
-        
-        .schedule-table th {
-            background-color: #ede9e4;
-            font-weight: 600;
-            color: #4a3a6a;
-        }
-        
-        .schedule-table td {
-            background-color: #ffffff;
-        }
-        
         .package-card {
             display: flex;
             flex-direction: column;
@@ -111,8 +119,9 @@
 <body class="antialiased">
     <!-- Logo Section -->
     <div class="w-full flex justify-center py-8 bg-white">
-        <img src="lw-logo2.jpg" alt="Learning World Logo" class="h-20 md:h-24 block" style="max-width:300px; border:none; outline:none; box-shadow:none;">
+        <img src="lw-logo2.jpg" alt="Learning World Logo" class="h-20 md:h-24" style="max-width:300px;">
     </div>
+
     <!-- Hero Section -->
     <section class="bg-[#f1edea] py-16 md:py-24 text-center">
         <div class="container">
@@ -131,7 +140,7 @@
                         Explore Our Packages!
                     </a>
                     <p class="text-gray-600 mt-4 text-sm md:text-base">
-                        ₦50,000 for DigiSavvy & AI & Software Development, ₦40,000 for all other packages.
+                        ₦50,000 for AI & Digital Skills, ₦40,000 for all other packages.
                     </p>
                     <div class="mt-6">
                         <h3 class="text-xl font-semibold text-gray-700 mb-2">Registration Ends In:</h3>
@@ -156,20 +165,11 @@
     </section>
 
     <!-- Packages Section -->
-    <section id="packages" class="py-16 md:py-20 bg-white">
+    <section id="packages" class="py-16 md:py-20 bg-[#ede9e4]">
         <div class="container">
             <h2 class="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-12">
                 Our Holiday Skills Packages
             </h2>
-
-            <div class="mb-10 p-6 bg-[#f1edea] rounded-lg shadow-inner">
-                <h3 class="text-2xl font-bold text-[#4a3a6a] mb-4">Enrollment Details</h3>
-                <div class="mb-4">
-                    <label for="currentChildName" class="block text-lg font-semibold text-gray-700 mb-2">Child's Name for Enrollment:</label>
-                    <input type="text" id="currentChildName" placeholder="E.g., Aisha, Emeka" class="w-full p-3 border border-gray-300 rounded-lg text-lg">
-                    <p class="text-sm text-gray-500 mt-1">Enter the name of the child you are currently enrolling for a package. Update this for each child.</p>
-                </div>
-            </div>
 
             <!-- Children's Packages (8-12) -->
             <div class="mb-16">
@@ -183,10 +183,10 @@
                         <button class="btn-secondary mt-4" disabled style="opacity: 0.5; cursor: not-allowed;">Add to Cart</button>
                     </div>
                     <div class="bg-[#f8f7f4] p-6 rounded-lg shadow-md package-card">
-                        <h4 class="font-semibold text-xl text-gray-700 mb-2">AI & Software Development</h4>
-                        <p class="text-gray-600 flex-grow">Focus: Introduction to coding through games and interactive activities. Includes Python/JS basics and AI use cases.</p>
+                        <h4 class="font-semibold text-xl text-gray-700 mb-2">AI & Digital Skills</h4>
+                        <p class="text-gray-600 flex-grow">Master coding and digital tools! Learn Python/JavaScript basics, AI tools, and non-code tech skills. Perfect for future tech leaders.</p>
                         <p class="text-[#4a3a6a] font-bold text-lg mt-3">₦50,000</p>
-                        <button class="btn-primary mt-4 add-to-cart-btn" data-package="AI & Software Development (Kids)">Add to Cart</button>
+                        <button class="btn-primary mt-4 add-to-cart-btn" data-package="AI & Digital Skills">Add to Cart</button>
                     </div>
                     <div class="bg-[#f8f7f4] p-6 rounded-lg shadow-md package-card">
                         <h4 class="font-semibold text-xl text-gray-700 mb-2">Money Savvy Kids</h4>
@@ -201,7 +201,7 @@
             <!-- Teenagers' Packages (13-19) -->
             <div>
                 <h3 class="text-3xl font-bold text-[#6d5aa2] text-center mb-8">Teenagers (Ages 13-19)</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div class="bg-[#f8f7f4] p-6 rounded-lg shadow-md package-card">
                         <h4 class="font-semibold text-xl text-gray-700 mb-2">Creative Writing & Storytelling</h4>
                         <p class="text-gray-600 flex-grow">Focus: Expression, narrative clarity, and persuasive writing. Develops plot, tone, structure, and editing skills.</p>
@@ -210,19 +210,10 @@
                         <button class="btn-secondary mt-4" disabled style="opacity: 0.5; cursor: not-allowed;">Add to Cart</button>
                     </div>
                     <div class="bg-[#f8f7f4] p-6 rounded-lg shadow-md package-card">
-                        <h4 class="font-semibold text-xl text-gray-700 mb-2">DigiSavvy (Data Analytics & AI)</h4>
-                        <p class="text-gray-600 flex-grow">The DigiSavvy Teens is introduction to Non-Code Tech tools. Master indemand tech skills without coding. Boost your productivity and stand out in school and future jobs. Beginner friendly tools and practical projects.<br><br>They'd
-                            be learning:
-                            <ul class='list-disc list-inside mt-2'>
-                                <li>Collaboration tools</li>
-                                <li>Design tools</li>
-                                <li>Google Workspace tools</li>
-                                <li>Productivity & Organisation tools</li>
-                                <li>Data & Automation tools</li>
-                            </ul>
-                        </p>
+                        <h4 class="font-semibold text-xl text-gray-700 mb-2">AI & Digital Skills</h4>
+                        <p class="text-gray-600 flex-grow">Master coding and digital tools! Learn Python/JavaScript basics, AI tools, and non-code tech skills. Perfect for future tech leaders.</p>
                         <p class="text-[#4a3a6a] font-bold text-lg mt-3">₦50,000</p>
-                        <button class="btn-primary mt-4 add-to-cart-btn" data-package="DigiSavvy (Data Analytics & AI)">Add to Cart</button>
+                        <button class="btn-primary mt-4 add-to-cart-btn" data-package="AI & Digital Skills">Add to Cart</button>
                     </div>
                     <div class="bg-[#f8f7f4] p-6 rounded-lg shadow-md package-card">
                         <h4 class="font-semibold text-xl text-gray-700 mb-2">Global Languages & Cultural Intelligence</h4>
@@ -236,8 +227,8 @@
         </div>
     </section>
 
-    <!-- Timetable/Info Section (replaces removed schedule) -->
-    <section class="py-8 md:py-12 bg-[#ede9e4]">
+    <!-- Class Schedule -->
+    <section class="py-8 md:py-12 bg-white">
         <div class="container text-center">
             <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
                 Class Schedule (Monday - Friday)
@@ -269,11 +260,11 @@
                         </tr>
                         <tr>
                             <td class="p-4 border font-semibold bg-gray-50">11:00 AM - 12:30 PM</td>
-                            <td class="p-4 border">AI & Software Development (8-12)</td>
-                            <td class="p-4 border">DigiSavvy (Data Analytics & AI) (13-19)</td>
-                            <td class="p-4 border">AI & Software Development (8-12)</td>
-                            <td class="p-4 border">DigiSavvy (Data Analytics & AI) (13-19)</td>
-                            <td class="p-4 border">AI & Software Development (8-12)</td>
+                            <td class="p-4 border">AI & Digital Skills (8-12)</td>
+                            <td class="p-4 border">AI & Digital Skills (13-19)</td>
+                            <td class="p-4 border">AI & Digital Skills (8-12)</td>
+                            <td class="p-4 border">AI & Digital Skills (13-19)</td>
+                            <td class="p-4 border">AI & Digital Skills (8-12)</td>
                         </tr>
                         <tr>
                             <td class="p-4 border font-semibold bg-gray-50">2:00 PM - 3:30 PM</td>
@@ -295,23 +286,34 @@
     </section>
 
     <!-- Your Cart Section -->
-    <section id="cart" class="py-16 md:py-20 bg-white">
+    <section class="py-16 md:py-20 bg-[#f1edea]">
         <div class="container">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-12">
                 Your Enrollment Cart
             </h2>
-            <div class="bg-[#f1edea] p-6 rounded-lg shadow-md">
-                <ul id="cart-items" class="mb-6 space-y-3">
-                    <li class="text-gray-600 text-center">No packages added yet.</li>
-                </ul>
-                <div class="text-right border-t pt-4 border-gray-200">
-                    <p class="text-xl font-bold text-[#4a3a6a]">Total: ₦<span id="cart-total">0</span></p>
-                </div>
-                <div class="text-center mt-8">
-                    <button id="proceed-to-payment-btn" class="btn-primary text-xl md:text-2xl shadow-lg hover:shadow-xl" disabled>
-                        Proceed to Payment
-                    </button>
-                    <p class="text-sm text-gray-500 mt-4">Secure payments powered by Paystack.</p>
+
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white p-8 rounded-lg shadow-md">
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Selected Packages:</h3>
+                        <ul id="cart-items" class="space-y-3">
+                            <!-- Cart items will be populated here -->
+                        </ul>
+                    </div>
+
+                    <div class="border-t pt-4">
+                        <div class="flex justify-between items-center text-xl font-semibold">
+                            <span>Total Amount:</span>
+                            <span class="text-[#4a3a6a]">₦<span id="cart-total">0</span></span>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-8">
+                        <button id="proceed-to-payment-btn" class="btn-primary text-xl md:text-2xl shadow-lg hover:shadow-xl" disabled>
+                            Proceed to Payment
+                        </button>
+                        <p class="text-sm text-gray-500 mt-4">Secure payments powered by Paystack.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -362,8 +364,9 @@
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </div>
                     <div class="faq-answer">
-                        <p>Our current holiday offerings include: Story Builders & Creative Crafts, AI & Software Development, Money Savvy Kids (for 8-12); and Creative Writing & Storytelling, DigiSavvy (Data Analytics & AI), Global Languages & Cultural
-                            Intelligence (French only).</p>
+                        <p>Our current holiday offerings include: Story Builders & Creative Crafts, AI & Digital Skills, Money Savvy Kids (for 8-12); and Creative Writing & Storytelling, AI & Digital Skills, Global Languages & Cultural Intelligence (French
+                            only).
+                        </p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -426,13 +429,14 @@
     <script>
         const PACKAGE_PRICES = {
             "Story Builders & Creative Crafts": 40000,
-            "AI & Software Development (Kids)": 50000,
+            "AI & Digital Skills": 50000,
             "Money Savvy Kids": 40000,
             "Creative Writing & Storytelling": 40000,
-            "DigiSavvy (Data Analytics & AI)": 50000,
             "Global Languages & Cultural Intelligence": 40000
         };
+
         let cart = []; // Stores { childName, packageName, price, schedule }
+        let childInfo = {}; // Stores child's information
 
         const packageData = {
             // Children (8-12)
@@ -443,9 +447,9 @@
                 timeSlot: "9:00 AM - 10:30 AM",
                 days: ["Mon", "Wed", "Fri"]
             },
-            "AI & Software Development (Kids)": {
+            "AI & Digital Skills": {
                 ageGroup: "8-12",
-                focus: "Introduction to coding through games.",
+                focus: "Introduction to coding and digital tools.",
                 schedule: "Mon, Wed, Fri: 11:00 AM - 12:30 PM",
                 timeSlot: "11:00 AM - 12:30 PM",
                 days: ["Mon", "Wed", "Fri"]
@@ -465,13 +469,6 @@
                 timeSlot: "9:00 AM - 10:30 AM",
                 days: ["Tue", "Thu"]
             },
-            "DigiSavvy (Data Analytics & AI)": {
-                ageGroup: "13-19",
-                focus: "Introduction to Non-Code Tech tools. Master indemand tech skills without coding. Boost productivity and stand out in school and future jobs. Collaboration, design, Google Workspace, productivity, organisation, data & automation tools.",
-                schedule: "Tue, Thu: 11:00 AM - 12:30 PM",
-                timeSlot: "11:00 AM - 12:30 PM",
-                days: ["Tue", "Thu"]
-            },
             "Global Languages & Cultural Intelligence": {
                 ageGroup: "13-19",
                 focus: "Beginner French, combined with cultural etiquette and global navigation skills.",
@@ -482,7 +479,6 @@
         };
 
         document.addEventListener('DOMContentLoaded', function() {
-            // Set the registration deadline to August 3rd, 2025 at 11:59:59 PM
             const deadline = new Date("August 3, 2025 23:59:59").getTime();
             const countdownElements = {
                 days: document.getElementById('days'),
@@ -526,7 +522,6 @@
                 });
             });
 
-            const currentChildNameInput = document.getElementById('currentChildName');
             const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
             const cartItemsList = document.getElementById('cart-items');
             const cartTotalSpan = document.getElementById('cart-total');
@@ -565,18 +560,11 @@
 
             addToCartButtons.forEach(button => {
                 button.addEventListener('click', function() {
-                    const childName = currentChildNameInput.value.trim();
-                    if (!childName) {
-                        alert('Please enter the child\'s name before adding a package.');
-                        currentChildNameInput.focus();
-                        return;
-                    }
-
                     const packageName = this.dataset.package;
                     const packageInfo = packageData[packageName];
 
                     // Check for schedule conflicts for the SAME child
-                    const existingPackagesForChild = cart.filter(item => item.childName === childName);
+                    const existingPackagesForChild = cart.filter(item => item.childName === 'Selected Child');
                     const conflict = existingPackagesForChild.some(existingItem => {
                         // Check if time slots are the same AND if any days overlap
                         return existingItem.timeSlot === packageInfo.timeSlot &&
@@ -584,30 +572,30 @@
                     });
 
                     if (conflict) {
-                        alert(`Conflict: ${childName} is already enrolled in a package during the ${packageInfo.timeSlot} slot on one of the class days. Please choose a different package or time for this child.`);
+                        alert(`Conflict: Selected child is already enrolled in a package during the ${packageInfo.timeSlot} slot on one of the class days. Please choose a different package or time for this child.`);
                         return;
                     }
 
                     // Check if the exact same package for the exact same child is already in the cart
                     const alreadyAdded = cart.some(item =>
-                        item.childName === childName && item.packageName === packageName
+                        item.childName === 'Selected Child' && item.packageName === packageName
                     );
 
                     if (alreadyAdded) {
-                        alert(`${childName} is already enrolled in "${packageName}".`);
+                        alert(`Selected child is already enrolled in "${packageName}".`);
                         return;
                     }
 
                     cart.push({
-                        childName: childName,
+                        childName: 'Selected Child',
                         packageName: packageName,
                         price: PACKAGE_PRICES[packageName],
                         schedule: packageInfo.schedule,
                         timeSlot: packageInfo.timeSlot,
-                        days: packageInfo.days
+                        days: packageInfo.days,
                     });
                     updateCartDisplay();
-                    alert(`"${packageName}" added to cart for ${childName}.`);
+                    alert(`"${packageName}" added to cart.`);
                 });
             });
 
@@ -627,7 +615,7 @@
                 // Store cart data in localStorage for the payment page
                 localStorage.setItem('currentEnrollment', JSON.stringify(cart));
                 // Redirect to the payment page
-                window.location.href = 'payment-page.html'; // Assuming payment-page.html is in the same directory
+                window.location.href = 'payment-page.html';
             });
 
             updateCartDisplay(); // Initial display of the cart
